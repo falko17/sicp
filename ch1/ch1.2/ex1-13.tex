@@ -1,0 +1,66 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage{hyperref}
+\usepackage{csquotes}
+\usepackage{fouriernc}
+\usepackage[p]{zlmtt}
+\usepackage{xspace}
+\usepackage{soul}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\let\openbox\relax
+\usepackage{amsthm}
+
+\newcommand{\Fib}{\mathrm{Fib}}
+
+\newcommand{\TODO}{\textbf{\textcolor{red}{TODO!}}\\}
+\hypersetup{
+   colorlinks=true,
+   citecolor=PineGreen,
+   urlcolor=blue}
+
+
+\begin{document}
+
+\section*{SICP: Exercise 1.13}
+\begin{displayquote}
+Prove that Fib$(n)$ is the closest integer to
+$\varphi^n / \sqrt{5}$, where $\varphi = (1 + \sqrt{5})/2$. 
+Hint: Let $\psi = (1 - \sqrt{5})/2$. 
+Use induction and the definition of the Fibonacci numbers (see 1.2.2) to prove that Fib$(n) = (\varphi^n - \psi^n)/\sqrt{5}$.
+\end{displayquote}
+
+Okay, here I go:
+
+\begin{proof}
+\textbf{Base Cases:}
+\begin{itemize}
+  \item Case ${n = 1}$, which is a simple rearrangement:
+\[
+\frac{\varphi - \psi}{\sqrt{5}} = \frac{\frac{1 + \sqrt{5}}{2} - \frac{1 - \sqrt{5}}{2}}{\sqrt{5}} = \frac{\sqrt{5}}{\sqrt{5}} = 1 = \Fib(1)
+\]
+  \item Case ${n = 2}$ (Here, we use the property of the golden ratios $\varphi^2 = \varphi + 1$, which holds for $\psi$ too):
+\[
+  \frac{\varphi^2 - \psi^2}{\sqrt{5}} = \frac{((\varphi + 1) - (\psi + 1)}{\sqrt{5}} = \frac{\varphi + 1 - \psi - 1}{\sqrt{5}} = \frac{\varphi - \psi}{\sqrt{5}} = \Fib(1) = 1 = \Fib(2)
+\]
+\end{itemize}
+
+\noindent{}\textbf{Induction Step}:\\
+We assume that the statement holds for all numbers $\leq n+1$, and will prove it for $n+1$.
+\[
+\begin{aligned}
+  \frac{\varphi^{n+1} - \psi^{n+1}}{\sqrt{5}} &= \frac{\varphi^{n} \cdot \varphi - \psi^{n} \cdot \psi}{\sqrt{5}}
+                                              = \frac{\varphi^{n-1} \cdot \varphi^2 - \psi^{n-1} \cdot \psi^2}{\sqrt{5}} && \text{Rearrange}\\
+                                             &= \frac{\varphi^{n-1} \cdot (\varphi + 1) - \psi^{n-1} \cdot (\psi+1)}{\sqrt{5}} && \text{Golden ratios}\\
+                                             &= \frac{\varphi^{n} + \varphi^{n-1} - \psi^{n} + \psi^{n-1}}{\sqrt{5}} && \text{Rearrange}\\
+                                             &= \frac{\varphi^{n} - \psi^{n}}{\sqrt{5}} + \frac{\varphi^{n-1} - \psi^{n-1}}{\sqrt{5}} && \text{Rearrange again}\\
+                                             &= \Fib(n) + \Fib(n-1) && \text{Induction requirement}\\
+                                             &= \Fib(n+1) && \text{Definition of Fib}
+\end{aligned}
+\]
+\end{proof}
+\end{document}
