@@ -1,32 +1,10 @@
-\documentclass[12pt,a4paper]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[english]{babel}
-\usepackage[dvipsnames]{xcolor}
-\usepackage[a4paper, total={7in, 10in}]{geometry}
-\usepackage{hyperref}
-\usepackage{csquotes}
-\usepackage{fouriernc}
-\usepackage[p]{zlmtt}
-\usepackage{xspace}
-\usepackage{soul}
-\usepackage{textcomp}
-\usepackage{amsmath}
-\let\openbox\relax
-\usepackage{amsthm}
+\documentclass{sicp}
 
-\newcommand{\Fib}{\mathrm{Fib}}
-
-\newcommand{\TODO}{\textbf{\textcolor{red}{TODO!}}\\}
-\hypersetup{
-   colorlinks=true,
-   citecolor=PineGreen,
-   urlcolor=blue}
-
+\date{August 17, 2024}
 
 \begin{document}
 
-\section*{SICP: Exercise 1.15}
+\maketitle
 
 \subsection*{How many times is the procedure p applied when (sine 12.15) is evaluated?}
 p is evaluated as many times as the angle needs to be divided by 3 before it becomes smaller than $0.1$.

@@ -1,38 +1,19 @@
-\documentclass[12pt,a4paper]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[english]{babel}
-\usepackage[dvipsnames]{xcolor}
-\usepackage[a4paper, total={7in, 10in}]{geometry}
-\usepackage{hyperref}
-\usepackage{csquotes}
-\usepackage{fouriernc}
-\usepackage[p]{zlmtt}
-\usepackage{xspace}
-\usepackage{soul}
-\usepackage{textcomp}
-\usepackage{amsmath}
-\let\openbox\relax
-\usepackage{amsthm}
+\documentclass{sicp}
 
 \newcommand{\Fib}{\mathrm{Fib}}
 
-\newcommand{\TODO}{\textbf{\textcolor{red}{TODO!}}\\}
-\hypersetup{
-   colorlinks=true,
-   citecolor=PineGreen,
-   urlcolor=blue}
-
+\date{August 15, 2024}
 
 \begin{document}
 
-\section*{SICP: Exercise 1.13}
-\begin{displayquote}
+\maketitle
+
+\sicptext{
 	Prove that Fib$(n)$ is the closest integer to
 	$\varphi^n / \sqrt{5}$, where $\varphi = (1 + \sqrt{5})/2$.
 	Hint: Let $\psi = (1 - \sqrt{5})/2$.
 	Use induction and the definition of the Fibonacci numbers (see 1.2.2) to prove that Fib$(n) = (\varphi^n - \psi^n)/\sqrt{5}$.
-\end{displayquote}
+}
 
 Okay, here I go:
 
