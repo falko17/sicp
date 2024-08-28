@@ -19,7 +19,7 @@
 \let\openbox\relax
 \RequirePackage{amsthm}
 \RequirePackage{xstring}
-\RequirePackage{tcolorbox}
+% \RequirePackage{tcolorbox}
 \RequirePackage{tikz}
 \RequirePackage{listings}
 \RequirePackage{inconsolata}
@@ -33,17 +33,16 @@
 }
 
 \renewenvironment{displayquote}{
-	\begin{tcolorbox}[
-			colback=gray!15,
-			colframe=gray!75,
-			boxrule=0.5pt,
-			left=5pt,
-			right=5pt,
-			top=5pt,
-			bottom=5pt
-		]
-		}{
-	\end{tcolorbox}
+	\begin{quote}
+		\itshape
+		\color{gray}
+		\begin{minipage}{\linewidth}
+			\setlength{\parindent}{0pt}
+			\setlength{\leftskip}{10pt}
+			\setlength{\rightskip}{10pt}
+			}{
+		\end{minipage}
+	\end{quote}
 }
 
 \newcommand{\formatEx}[1]{%
