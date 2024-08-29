@@ -1,0 +1,41 @@
+\documentclass{../../sicp}
+
+\date{August 29, 2024}
+
+\begin{document}
+
+\maketitle
+
+\begin{displayquote}
+	Suppose we define the procedure
+
+	\begin{lstlisting}
+(define (f g) (g 2))
+  \end{lstlisting}
+	Then we have
+	\begin{lstlisting}
+(f square)
+4
+
+(f (lambda (z) (* z (+ z 1))))
+6
+  \end{lstlisting}
+
+	What happens if we (perversely) ask the interpreter to evaluate the combination \texttt{(f~f)}? Explain.
+
+\end{displayquote}
+
+The argument \texttt{g} represents a function to which 2 will be given as a parameter.
+If we make this parameter \texttt{f}, that means \texttt{(f 2)} will be evaluated, which will then evaluate to \texttt{(2 2)}, which causes an error because 2 is not a procedure.
+
+To verify this hypothesis:
+\begin{lstlisting}
+> (f f)
+application: not a procedure;
+ expected a procedure that can be applied to arguments
+  given: 2
+\end{lstlisting}
+
+Seems correct!
+
+\end{document}
