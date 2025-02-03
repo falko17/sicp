@@ -1,0 +1,48 @@
+\documentclass{../../sicp}
+
+\date{February 3, 2025}
+
+\begin{document}
+
+\maketitle
+
+\begin{displayquote}
+	The \emph{width} of an interval is half of the difference between its upper and lower bounds. The width is a measure of the uncertainty of the number specified by the interval. For some arithmetic operations[,] the width of the result of combining two intervals is a function only of the widths of the argument intervals, whereas for others the width of the combination is not a function of the widths of the argument intervals. Show that the width of the sum (or difference) of two intervals is a function only of the widths of the intervals being added (or subtracted). Give examples to show that this is not true for multiplication or division.
+\end{displayquote}
+
+Calling the lower bound $x$ and the upper bound $y$ (leading to the condition that $y \geq x$), the width can be defined as $w = \frac{y - x}{2}$.
+
+\section*{Addition (\& Subtraction)}
+When we add two intervals $i_1$ and $i_2$\dots
+
+\[
+	i_+ = i_1 + i_2 = (x_1, y_1) + (x_2, y_2) = (x_1 + x_2, y_1 + y_2)
+\]
+
+\dots{}the width of $i_+$ is, by definition, $\frac{y_+ - x_+}{2}$.
+As we can see from the above, this is equivalent to $\frac{(y_1 + y_2) - (x_1 + x_2)}{2}$.
+Reformulating this to contain only the widths of the intervals, we get:
+\[
+	\frac{(y_1 + y_2) - (x_1 + x_2)}{2} = \frac{y_1 + y_2 - x_1 - x_2}{2} = \frac{y_1 - x_1}{2} + \frac{y_2 - x_2}{2} = w_1 + w_2
+\]
+
+We can use analogous reasoning for subtraction, which I'll skip here by virtue of laziness.
+
+\section*{Multiplication}
+Here, we just need a counter example.
+Consider the interval $i_1 = (2, 4)$ with $w_1 = 2$ and interval $i_2 = (-4, -7)$ with width $w_2 = 3$.
+Multiplying these intervals gets us $i_\times = (-28, -8)$ with $w_\times = 10$.
+
+As another example, take $i'_1 = (1,3)$ with $w'_1 = 2$ and $i'_2 = (7,10)$ with $w'_2 = 3$.
+Here, we'd get $w'_\times = (7, 30)$ with $w'_\times = 11.5$.
+
+If the output width were a function of only the input widths, we would need a function $f: \mathbb{R}_+ \times \mathbb{R}_+ \longrightarrow \mathbb{R}_+$ with $f(2; 3) = 10$ \emph{and} with $f(2; 3) = 11.5$.
+This means $f$ would not be a function, which contradicts our assumptions.
+
+\section*{Division}
+Very similarly:
+Assume the same intervals as above.
+Then, $i_\div = (-1, -\frac{2}{7})$ with $w_\div = \frac{5}{14}$,
+and $i'_\div = (0.1, \frac{3}{7})$ with $w'_\div = \frac{23}{140}$, leading to the same contradiction as above.
+
+\end{document}

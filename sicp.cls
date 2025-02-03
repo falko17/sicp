@@ -15,6 +15,7 @@
 \RequirePackage{xspace}
 \RequirePackage{soul}
 \RequirePackage{textcomp}
+\RequirePackage{microtype}
 \RequirePackage{amsmath}
 \let\openbox\relax
 \RequirePackage{amsthm}
