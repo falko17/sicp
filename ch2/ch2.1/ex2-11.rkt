@@ -20,7 +20,7 @@
     (make-interval (min p1 p2 p3 p4)
                    (max p1 p2 p3 p4))))
 
-; Exercise 2.10
+; Exercise 2.11
 
 (define (sgn x) (if (< x 0) -1 1))
 

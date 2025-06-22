@@ -1,0 +1,60 @@
+\documentclass{../../sicp}
+
+\date{April 25, 2025}
+
+\begin{document}
+
+\maketitle
+
+\begin{displayquote}
+	Show that under the assumption of small percentage tolerances there is a simple formula for the approximate percentage tolerance of the product of two intervals in terms of the tolerances of the factors. You may simplify the problem by assuming that all numbers are positive.
+\end{displayquote}
+
+So, we have two intervals, $i_1 = (a_1, b_1)$ and $i_2 = (a_2, b_2)$, with $a_1, a_2, b_1, b_2 \in \mathbb{N}$.
+We can also express these as $c \pm p$, where $p$ is the uncertainty in percent.
+Essentially, $i = c \pm (p \cdot c)$.
+We hence also know $p = \frac{\frac{b - a}{2}}{c} = \frac{b-a}{2 \cdot c}$.
+
+According to the exercise description, we can apparently find a formula for the approximate tolerance of the product of two intervals using only the ,,input'' tolerances.
+Let's see if we can get there.
+
+Since all numbers are positive, we know (see 2.11) that $i_{\times} = i_1 \cdot i_2 = (a_1 \cdot a_2, b_1 \cdot b_2)$.
+Hence:
+% (99.0, 101) => (100, 0.01)
+% (190, 210) => (200, 0.05)
+% => (18810, 21210) => (20010, 0.12)
+
+% (0.9, 1.1) => (1.0, 0.1)
+% (89.1, 111.1) => (100.1, 0.11)  [from 0.01 & 0.10]
+
+% Or: (171, 231) => (201, 0.15)  [from 0.05 & 0.10]
+
+\begin{align*}
+	i_{\times} & = (a_1 \cdot a_2, b_1 \cdot b_2)                                                                         \\
+	           & = ((c_1 - p_1 \cdot c_1) \cdot (c_2 - p_2 \cdot c_2), (c_1 + p_1 \cdot c_1) \cdot (c_2 + p_2 \cdot c_2)) \\
+	           & = ((c_1 - p_1 \cdot c_1) \cdot (c_2 - p_2 \cdot c_2), (c_1 + p_1 \cdot c_1) \cdot (c_2 + p_2 \cdot c_2)) \\
+\end{align*}
+
+Reformulating this into ,,center-percent'' notation:
+\begin{align*}
+	c_\times & = \frac{(c_1 - p_1 \cdot c_1) \cdot (c_2 - p_2 \cdot c_2) + (c_1 + p_1 \cdot c_1) \cdot (c_2 + p_2 \cdot c_2)}{2}                                                                                                                       \\
+	p_\times & = \frac{(c_1 - p_1 \cdot c_1) \cdot (c_2 - p_2 \cdot c_2) - (c_1 + p_1 \cdot c_1) \cdot (c_2 + p_2 \cdot c_2)}{c_\times \cdot 2}                                                                                                        \\
+	         & = \frac{(c_1 - p_1 \cdot c_1) \cdot (c_2 - p_2 \cdot c_2) - (c_1 + p_1 \cdot c_1) \cdot (c_2 + p_2 \cdot c_2)}{\frac{(c_1 - p_1 \cdot c_1) \cdot (c_2 - p_2 \cdot c_2) + (c_1 + p_1 \cdot c_1) \cdot (c_2 + p_2 \cdot c_2)}{2} \cdot 2} \\
+	         & = \frac{(c_1 - p_1 \cdot c_1) \cdot (c_2 - p_2 \cdot c_2) - (c_1 + p_1 \cdot c_1) \cdot (c_2 + p_2 \cdot c_2)}{(c_1 - p_1 \cdot c_1) \cdot (c_2 - p_2 \cdot c_2) + (c_1 + p_1 \cdot c_1) \cdot (c_2 + p_2 \cdot c_2)}
+\end{align*}
+
+% Now, since we can assume that percentage tolerances are rather small, we'll just work with $p_1 \approx p_2 \approx 0$ and get:
+Hmm...
+\begin{align*}
+	p_\times                                               & = p_1 + p_2                                                     \\
+	\frac{b_\times - a_\times}{2 \cdot c_\times}           & = \frac{b_1 - a_1}{2 \cdot c_1} + \frac{b_2 - a_2}{2 \cdot c_2} \\
+	\frac{b_1 \cdot b_2 - a_1 \cdot a_2}{2 \cdot c_\times} & = \frac{b_1 - a_1}{2 \cdot c_1} + \frac{b_2 - a_2}{2 \cdot c_2} \\
+\end{align*}
+
+This does not feel like it helps, or goes in a helpful direction.
+It especially doesn't feel like I'm going towards a "simple" formula.
+I fear I may have to skip this exercise for now and revisit it later\footnote{
+	Or, more likely, just look up a solution and see where I went wrong.
+} so I won't be stuck here for too long.
+
+\end{document}

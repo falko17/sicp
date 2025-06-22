@@ -33,7 +33,7 @@
         (lower-bound i)) 
      2))
 
-; Exercise 2.11
+; Exercise 2.12
 
 ; percent: width / center
 (define (make-center-percent c p)
